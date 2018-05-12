@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>we-transfer-client</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+      <div class="contents">
+          <h2>We Transfer Client</h2>
+
+          <div class="alert alert-success" style="display: none">
+          </div>
+    
+          <div class="alert alert-danger" style="display: none">
+          </div>
+
+          <form id="key-form">
+            <div class="form-group">
+              <input placeholder="Enter your api key here" name="key" class="form-control"/>
+            </div>
+            <input type="submit" class="btn btn-success form-control" />
+          </form>
+    
+          <form id="upload-form" style="display: none">
+              <button type="submit" id="uploadme" class="btn btn-primary" class="form-control">Upload</button>
+          </form>
+      </div> 
+      
+      <script>
+        const {ipcRenderer} = require('electron')
+
+
+        ipcRenderer.on('error', (e, error) => {
+          document.querySelector('.alert-danger').innerHTML = error;
+          document.querySelector('.alert-danger').style.display = 'block';
+        })
+
+        ipcRenderer.on('success', (e, shortended_url) => {
+          document.querySelector('.alert-success').innerHTML = shortended_url
+          document.querySelector('.alert-success').style.display = 'block'
+        })
+        var uploadForm = document.querySelector('#upload-form')
+        uploadForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+            ipcRenderer.send('upload')
+        })
+
+        var keyForm = document.querySelector('#key-form')
+        keyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            ipcRenderer.send('key-inserted', keyForm.key.value);
+        })
+
+        ipcRenderer.on('key-accepted', () => {
+          keyForm.style.display = 'none';
+          uploadForm.style.display = 'block'
+        })
+      </script>
+
+      <script src="./node_modules/jquery/dist/jquery.js"></script>
+      <script src="./node_modules/popper.js/dist/umd/popper.js"></script>
+      <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  </body>
+</html>

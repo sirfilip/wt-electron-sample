@@ -1,0 +1,10 @@
+version: 1.0.0
+files:
+  - url: we-transfer-client-1.0.0-mac.zip
+    sha512: KNiQhtJoZ0zAnXj7/UfwQ+F516TaDji3YxCKG7Otp92QzLWYoc2Gqo9rKCZcwCcfofIwG1cSnXiWYvmdBd/TQQ==
+  - url: we-transfer-client-1.0.0.dmg
+    sha512: RsJmoq0CvmPCDKp0WjG+4lSBZNrZrlln8hKzA1kvgbodt2qh759SXVTI5MqU/KIni7yir1o+UF/HYMxxS0i1Vw==
+    size: 50043775
+path: we-transfer-client-1.0.0-mac.zip
+sha512: KNiQhtJoZ0zAnXj7/UfwQ+F516TaDji3YxCKG7Otp92QzLWYoc2Gqo9rKCZcwCcfofIwG1cSnXiWYvmdBd/TQQ==
+releaseDate: '2018-05-12T13:22:16.473Z'
